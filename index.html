@@ -5,48 +5,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>VG Generator — tnks1407</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #fdf6fb; --surface: #fff0f8; --surface2: #fce8f4;
-      --border: #f0c8e0; --accent1: #c87ec0; --accent2: #e86fa0;
-      --accent3: #5bbfb0; --text: #3d2848; --text-muted: #9a7aaa;
+      --bg: #f5f2ec; --surface: #faf8f4; --surface2: #f0ece6;
+      --border: #e3dbd0; --accent: #3c7876; --accent2: #5a9e9b;
+      --accent3: #8c6d4f; --text: #1d1b17; --text-muted: #7d7568;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+    body { font-family: 'Zen Kaku Gothic New', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
     header {
-      background: rgba(253,246,251,0.92); backdrop-filter: blur(12px);
+      background: rgba(245,242,236,0.90); backdrop-filter: blur(12px);
       border-bottom: 1.5px solid var(--border); padding: 0 1.5rem;
       position: sticky; top: 0; z-index: 10;
     }
     .header-inner { max-width: 960px; margin: 0 auto; height: 52px; display: flex; align-items: center; justify-content: space-between; }
-    .logo { font-size: 1rem; font-weight: 800; background: linear-gradient(90deg, var(--accent1), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .logo { font-size: 1rem; font-weight: 800; background: none; color: var(--accent);  }
     .logo-sub { font-size: 0.75rem; color: var(--text-muted); font-weight: 600; }
 
     main { max-width: 960px; margin: 0 auto; padding: 2rem 1rem; display: grid; grid-template-columns: 340px 1fr; gap: 1.5rem; }
     @media (max-width: 680px) { main { grid-template-columns: 1fr; } }
 
-    .panel { background: #fff; border: 1.5px solid var(--border); border-radius: 16px; padding: 1.5rem; box-shadow: 0 2px 12px rgba(200,126,192,0.08); }
+    .panel { background: #fff; border: 1.5px solid var(--border); border-radius: 16px; padding: 1.5rem; box-shadow: 0 2px 12px rgba(60,120,118,0.08); }
     h2 { font-size: 1rem; font-weight: 800; margin-bottom: 1.25rem; }
 
     .tabs { display: flex; gap: 0.5rem; margin-bottom: 1.25rem; }
-    .tab { flex: 1; padding: 0.45rem; border-radius: 8px; border: 1.5px solid var(--border); background: var(--surface); font-family: 'Nunito', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--text-muted); cursor: pointer; transition: all 0.15s; }
-    .tab.active { background: var(--accent1); border-color: var(--accent1); color: #fff; }
+    .tab { flex: 1; padding: 0.45rem; border-radius: 8px; border: 1.5px solid var(--border); background: var(--surface); font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 0.85rem; font-weight: 700; color: var(--text-muted); cursor: pointer; transition: all 0.15s; }
+    .tab.active { background: var(--accent); border-color: var(--accent); color: #fff; }
 
     .field { margin-bottom: 1rem; }
     label { display: block; font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.3rem; font-family: 'JetBrains Mono', monospace; }
     .field-row { display: flex; align-items: center; gap: 0.5rem; }
-    input[type=range] { flex: 1; accent-color: var(--accent1); }
+    input[type=range] { flex: 1; accent-color: var(--accent); }
     input[type=number] { width: 64px; padding: 0.3rem 0.4rem; border: 1.5px solid var(--border); border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text); background: var(--surface); outline: none; }
-    input[type=number]:focus { border-color: var(--accent1); }
+    input[type=number]:focus { border-color: var(--accent); }
     .unit { font-size: 0.75rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
 
     .divider { border: none; border-top: 1px solid var(--border); margin: 1.25rem 0; }
 
     .btn-primary {
       width: 100%; padding: 0.7rem; border-radius: 10px; border: none;
-      background: linear-gradient(90deg, var(--accent1), var(--accent2));
-      color: #fff; font-family: 'Nunito', sans-serif; font-size: 0.95rem; font-weight: 800;
+      background: none; color: var(--accent);
+      color: #fff; font-family: 'Zen Kaku Gothic New', sans-serif; font-size: 0.95rem; font-weight: 800;
       cursor: pointer; transition: opacity 0.15s;
     }
     .btn-primary:hover { opacity: 0.88; }
@@ -56,18 +56,18 @@
 
     /* 3D preview */
     .preview-panel { display: flex; flex-direction: column; }
-    #canvas3d { width: 100%; aspect-ratio: 1; border-radius: 12px; background: linear-gradient(135deg, #fce8f4, #edf8f6); touch-action: none; }
+    #canvas3d { width: 100%; aspect-ratio: 1; border-radius: 12px; background: linear-gradient(135deg, #f0ece6, #edf8f6); touch-action: none; }
     .preview-label { text-align: center; color: var(--text-muted); font-size: 0.78rem; margin-top: 0.5rem; font-family: 'JetBrains Mono', monospace; }
     .dims-row { display: flex; gap: 0.75rem; margin-top: 0.75rem; flex-wrap: wrap; }
     .dim-badge { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 0.3rem 0.6rem; font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; color: var(--text-muted); }
-    .dim-badge span { color: var(--accent1); font-weight: 700; }
+    .dim-badge span { color: var(--accent); font-weight: 700; }
   </style>
 </head>
 <body>
   <header>
     <div class="header-inner">
       <span class="logo">VG Generator</span>
-      <span class="logo-sub">by <a href="https://tnks1407.com" style="color:var(--accent1);text-decoration:none;">TNKS1407</a></span>
+      <span class="logo-sub">by <a href="https://tnks1407.com" style="color:var(--accent);text-decoration:none;">TNKS1407</a></span>
     </div>
   </header>
 
